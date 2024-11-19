@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            <div class="message-container {{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="container">
+        <h1>Create a New User</h1>
+        
+        <form action="{% url 'create_user' %}" method="POST">
+            {% csrf_token %}
+            <!-- Username -->
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="Enter Username" required>
+
+            <br><br>
+            <!-- Email -->
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter Email" required>
+
+            <!-- Password -->
+            {% comment %} <label for="password">Password:</label> {% endcomment %}
+            <input type="hidden" name="password" id="password" placeholder="Enter Password" value="default:123">
+
+            <br><br>
+            <!-- Gender -->
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+                <option value="N">Not Specified</option>
+            </select>
+
+            <br><br>
+            <!-- Phone Number -->
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" name="phone_number" id="phone_number" placeholder="Enter Phone Number">
+
+            <br><br>
+            <!-- Address -->
+            <label for="address">Address:</label>
+            <textarea name="address" id="address" placeholder="Enter Address"></textarea>
+
+            <!-- Active Checkbox -->
+            <input type="hidden" name="is_active" id="is_active" value="False">
+
+            <br><br>
+            <!-- Superuser Checkbox -->
+            <label for="is_superuser">
+                
+                Is Superuser
+                <input type="checkbox" name="is_superuser" id="is_superuser">
+            </label>
+
+            <br><br>
+            <button type="submit">Create User</button>
+        </form>
+
+        <br><br>
+        <a href="{% url 'list_user' %}" class="back-link">User List</a>
+    </div>
+</body>
+</html>

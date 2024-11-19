@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Dashboard</h1>
+
+        <div class="options">
+            <h2>What would you like to do?</h2>
+            <div class="button-group">
+                
+                <a href="{% url 'update_user' user_id %}" class="button">Update Profile Info</a>
+                <br><br>
+              
+                <a href="{% url 'product:list_product' %}" class="button">View Product</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

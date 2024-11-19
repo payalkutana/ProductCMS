@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+</head>
+<body>
+    {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            <div class="message-container {{ message.tags }}">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="container">
+    <h1>Create a New Product</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <br><br>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required><br>
+        <br><br>
+        <label for="image">Product Image:</label>
+        <input type="file" id="image" name="image"><br>
+        <br><br>
+        <button type="submit">Save Product</button>
+    </form>
+
+    <p><a href="{% url 'product:list_product' %}">Product List</a></p>
+    </div>
+</body>
+</html>
